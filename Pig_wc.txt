@@ -1,0 +1,6 @@
+Word count pig
+
+lines = LOAD '/home/acadgild/anil/Pig_Assignments/sample_wordCount' AS (line:chararray);
+   words = FOREACH lines GENERATE FLATTEN(TOKENIZE(line)) as word;
+   grouped = GROUP words by word;
+   wordcount = FOREACH grouped GENERATE group ,COUNT(words);
